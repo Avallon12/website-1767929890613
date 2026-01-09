@@ -1,0 +1,9 @@
+{
+  "name": "website-1767929890613-1767929892707",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {}
+}
