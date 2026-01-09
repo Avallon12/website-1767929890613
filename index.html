@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cantina del Sol | Authentic Mexican Cuisine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* DESIGN SYSTEM */
+    :root { --primary: #DC2626; --secondary: #F59E0B; --dark: #1C1917; --light: #FFFBEB; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    /* UTILITIES */
+    .gradient-text { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.9); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .glass-dark { backdrop-filter: blur(12px); background: rgba(28, 25, 23, 0.8); border: 1px solid rgba(255,255,255,0.1); }
+    
+    /* ANIMATIONS */
+    .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+    .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+    
+    /* COMPONENTS */
+    .nav-link { position: relative; font-weight: 500; transition: color 0.3s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
+    .nav-link:hover { color: var(--primary); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { color: var(--primary); }
+    .nav-link.active::after { width: 100%; }
+    
+    .btn-primary { background: linear-gradient(135deg, var(--primary), #B91C1C); color: white; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4); }
+    
+    .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15); }
+    
+    /* MOBILE MENU */
+    #mobile-menu { transition: transform 0.3s ease-in-out; }
+    .menu-open { transform: translateX(0) !important; }
+  </style>
+</head>
+<body class="antialiased selection:bg-red-100 selection:text-red-900">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-24">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <i class="fas fa-sun text-3xl text-amber-500 group-hover:rotate-180 transition-transform duration-700"></i>
+          <span class="text-2xl font-bold tracking-tight text-stone-900">Cantina<span class="text-red-600">DelSol</span></span>
+        </a>
+        
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link active text-stone-600">Home</a>
+          <a href="about.html" class="nav-link text-stone-600">Our Story</a>
+          <a href="menu.html" class="nav-link text-stone-600">Menu</a>
+          <a href="contact.html" class="nav-link text-stone-600">Contact</a>
+          <a href="reservations.html" class="btn-primary px-6 py-3 rounded-full font-semibold text-sm tracking-wide">Book a Table</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button onclick="toggleMenu()" class="md:hidden text-stone-800 text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-white transform translate-x-full md:hidden flex flex-col items-center justify-center space-y-8">
+    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-3xl text-stone-800"><i class="fas fa-times"></i></button>
+    <a href="index.html" class="text-2xl font-bold text-stone-900">Home</a>
+    <a href="about.html" class="text-2xl font-bold text-stone-600">Our Story</a>
+    <a href="menu.html" class="text-2xl font-bold text-stone-600">Menu</a>
+    <a href="contact.html" class="text-2xl font-bold text-stone-600">Contact</a>
+    <a href="reservations.html" class="btn-primary px-8 py-3 rounded-full text-xl">Book Now</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop" alt="Mexican Feast" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-stone-900/30"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center sm:px-6 lg:px-8 pt-20">
+      <div class="animate-slide-up">
+        <span class="inline-block px-4 py-1.5 border border-amber-500/50 rounded-full text-amber-400 font-medium text-sm tracking-wider uppercase mb-6 bg-stone-900/50 backdrop-blur-sm">Est. 1985 • Mexico City Soul</span>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+          Taste the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">Vibrant Soul</span> of Mexico
+        </h1>
+        <p class="text-xl text-stone-300 mb-10 max-w-2xl mx-auto font-light">Experience authentic culinary traditions fused with modern gastronomy in the heart of the city.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="reservations.html" class="btn-primary px-8 py-4 rounded-full font-bold text-lg">Make a Reservation</a>
+          <a href="menu.html" class="px-8 py-4 rounded-full font-bold text-lg bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all">View Menu</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+      <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- FEATURES / PREVIEW -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-12 -mt-32 relative z-20">
+        <!-- Card 1 -->
+        <div class="card-hover bg-white p-8 rounded-2xl shadow-xl border-b-4 border-red-500">
+          <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-6 text-red-600 text-2xl">
+            <i class="fas fa-pepper-hot"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-900 mb-3">Authentic Flavors</h3>
+          <p class="text-stone-600 mb-4">Recipes passed down through three generations, using imported chiles and spices.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card-hover bg-white p-8 rounded-2xl shadow-xl border-b-4 border-amber-500">
+          <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mb-6 text-amber-600 text-2xl">
+            <i class="fas fa-wine-glass"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-900 mb-3">Premium Tequila</h3>
+          <p class="text-stone-600 mb-4">A curated selection of over 50 rare tequilas and mezcals for the perfect pairing.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card-hover bg-white p-8 rounded-2xl shadow-xl border-b-4 border-green-600">
+          <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-6 text-green-700 text-2xl">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-900 mb-3">Farm to Table</h3>
+          <p class="text-stone-600 mb-4">We partner with local organic farms to ensure the freshest ingredients daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-amber-100 rounded-full -z-10"></div>
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-red-100 rounded-full -z-10"></div>
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=800&h=1000&fit=crop" alt="Chef plating food" class="rounded-2xl shadow-2xl w-full object-cover h-[600px]">
+        </div>
+        <div>
+          <span class="text-red-600 font-bold tracking-wider uppercase text-sm">Our Philosophy</span>
+          <h2 class="text-4xl lg:text-5xl font-bold text-stone-900 mt-2 mb-6">More Than Just a Meal, <br/>It's a <span class="gradient-text">Celebration</span></h2>
+          <p class="text-lg text-stone-600 mb-6 leading-relaxed">
+            At Cantina del Sol, we believe that food is the universal language of love. Founded in 1985 by Chef Maria Gonzalez, our kitchen brings the vibrant streets of Mexico City to your table.
+          </p>
+          <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+            Every tortilla is hand-pressed, every mole is slow-cooked for 24 hours, and every guest is treated like family.
+          </p>
+          <a href="about.html" class="inline-flex items-center text-red-600 font-bold hover:text-red-700 transition-colors">
+            Read Our Full Story <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-20 bg-stone-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-stone-800">
+        <div>
+          <div class="text-4xl md:text-5xl font-bold text-amber-500 mb-2">35+</div>
+          <div class="text-stone-400 text-sm uppercase tracking-widest">Years of Service</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold text-amber-500 mb-2">50+</div>
+          <div class="text-stone-400 text-sm uppercase tracking-widest">Tequila Varieties</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold text-amber-500 mb-2">12k</div>
+          <div class="text-stone-400 text-sm uppercase tracking-widest">Happy Guests/Yr</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold text-amber-500 mb-2">4.9</div>
+          <div class="text-stone-400 text-sm uppercase tracking-widest">Star Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-stone-900">What Our Guests Say</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+          <div class="flex text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-stone-600 mb-6 italic">"The best mole poblano I've had outside of Oaxaca. The atmosphere is electric and the service is impeccable."</p>
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover">
+            <div><div class="font-bold text-stone-900">Elena R.</div><div class="text-stone-500 text-sm">Food Critic</div></div>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+          <div class="flex text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-stone-600 mb-6 italic">"A hidden gem. The mezcal cocktails are inventive and the tacos are simply life-changing."</p>
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover">
+            <div><div class="font-bold text-stone-900">Marcus T.</div><div class="text-stone-500 text-sm">Local Guide</div></div>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+          <div class="flex text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-stone-600 mb-6 italic">"Perfect for our anniversary dinner. Romantic lighting, amazing food, and the staff made us feel so special."</p>
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover">
+            <div><div class="font-bold text-stone-900">Sarah J.</div><div class="text-stone-500 text-sm">Regular Guest</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-red-600">
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Taste the Magic?</h2>
+      <p class="text-xl text-red-100 mb-10">Tables fill up quickly on weekends. Secure your spot today.</p>
+      <a href="reservations.html" class="inline-block bg-white text-red-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-stone-100 hover:scale-105 transition-all shadow-2xl">Book Your Table</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-900 text-stone-400 py-16 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-1">
+          <div class="flex items-center gap-2 mb-6">
+             <i class="fas fa-sun text-2xl text-amber-500"></i>
+             <span class="text-xl font-bold text-white">Cantina<span class="text-red-500">DelSol</span></span>
+          </div>
+          <p class="mb-6">Authentic Mexican cuisine served with warmth and tradition since 1985.</p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="hover:text-amber-500 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-amber-500 transition">About Us</a></li>
+            <li><a href="menu.html" class="hover:text-amber-500 transition">Menu</a></li>
+            <li><a href="reservations.html" class="hover:text-amber-500 transition">Reservations</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Contact</h4>
+          <ul class="space-y-3">
+            <li><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> 123 Culinary Ave, Food City</li>
+            <li><i class="fas fa-phone mr-2 text-red-500"></i> (555) 123-4567</li>
+            <li><i class="fas fa-envelope mr-2 text-red-500"></i> hola@cantinadelsol.com</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Hours</h4>
+          <ul class="space-y-3">
+            <li class="flex justify-between"><span>Mon-Thu</span> <span>11am - 10pm</span></li>
+            <li class="flex justify-between"><span>Fri-Sat</span> <span>11am - 11pm</span></li>
+            <li class="flex justify-between"><span>Sunday</span> <span>10am - 9pm</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-stone-800 pt-8 text-center text-sm">
+        <p>&copy; 2024 Cantina del Sol. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('menu-open');
+    }
+  </script>
+</body>
+</html>
