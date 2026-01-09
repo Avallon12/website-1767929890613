@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Menu | Cantina del Sol</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --primary: #DC2626; --secondary: #F59E0B; --dark: #1C1917; --light: #FFFBEB; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.9); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), #B91C1C); color: white; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); }
+    .nav-link { position: relative; font-weight: 500; transition: color 0.3s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    #mobile-menu { transition: transform 0.3s ease-in-out; }
+    .menu-open { transform: translateX(0) !important; }
+    .menu-item { transition: transform 0.2s; }
+    .menu-item:hover { transform: translateX(5px); }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-24">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <i class="fas fa-sun text-3xl text-amber-500 group-hover:rotate-180 transition-transform duration-700"></i>
+          <span class="text-2xl font-bold tracking-tight text-stone-900">Cantina<span class="text-red-600">DelSol</span></span>
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-stone-600">Home</a>
+          <a href="about.html" class="nav-link text-stone-600">Our Story</a>
+          <a href="menu.html" class="nav-link text-stone-900 font-bold">Menu</a>
+          <a href="contact.html" class="nav-link text-stone-600">Contact</a>
+          <a href="reservations.html" class="btn-primary px-6 py-3 rounded-full font-semibold text-sm tracking-wide">Book a Table</a>
+        </div>
+        <button onclick="toggleMenu()" class="md:hidden text-stone-800 text-2xl focus:outline-none"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-white transform translate-x-full md:hidden flex flex-col items-center justify-center space-y-8">
+    <button onclick="toggleMenu()" class="absolute top-8 right-8 text-3xl text-stone-800"><i class="fas fa-times"></i></button>
+    <a href="index.html" class="text-2xl font-bold text-stone-600">Home</a>
+    <a href="about.html" class="text-2xl font-bold text-stone-600">Our Story</a>
+    <a href="menu.html" class="text-2xl font-bold text-stone-900">Menu</a>
+    <a href="contact.html" class="text-2xl font-bold text-stone-600">Contact</a>
+    <a href="reservations.html" class="btn-primary px-8 py-3 rounded-full text-xl">Book Now</a>
+  </div>
+
+  <!-- MENU HERO -->
+  <section class="pt-40 pb-20 bg-stone-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-40">
+      <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1600&h=900&fit=crop" class="w-full h-full object-cover">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">Culinary Art</h1>
+      <p class="text-xl text-stone-300 max-w-2xl mx-auto">Explore our seasonally curated menu featuring authentic flavors and modern twists.</p>
+    </div>
+  </section>
+
+  <!-- MENU SECTIONS -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Antojitos -->
+      <div class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <h2 class="text-3xl font-bold text-stone-900">Antojitos</h2>
+          <div class="h-px bg-stone-300 flex-grow"></div>
+          <span class="text-stone-500 font-medium">Starters</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Guacamole Tradicional</h3>
+              <span class="text-red-600 font-bold">$14</span>
+            </div>
+            <p class="text-stone-600 text-sm">Fresh avocado, serrano pepper, onion, cilantro, lime, house-made totopos. <span class="text-green-600 text-xs font-bold ml-2">V, GF</span></p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Queso Fundido</h3>
+              <span class="text-red-600 font-bold">$16</span>
+            </div>
+            <p class="text-stone-600 text-sm">Melted Chihuahua cheese, chorizo, roasted poblano rajas, flour tortillas.</p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Ceviche de Camarón</h3>
+              <span class="text-red-600 font-bold">$19</span>
+            </div>
+            <p class="text-stone-600 text-sm">Shrimp cured in lime, cucumber, red onion, avocado, chili oil. <span class="text-green-600 text-xs font-bold ml-2">GF</span></p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Elote Callejero</h3>
+              <span class="text-red-600 font-bold">$9</span>
+            </div>
+            <p class="text-stone-600 text-sm">Grilled corn, cotija cheese, mayo, chili powder, lime.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Platos Fuertes -->
+      <div class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <h2 class="text-3xl font-bold text-stone-900">Platos Fuertes</h2>
+          <div class="h-px bg-stone-300 flex-grow"></div>
+          <span class="text-stone-500 font-medium">Mains</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Mole Poblano</h3>
+              <span class="text-red-600 font-bold">$28</span>
+            </div>
+            <p class="text-stone-600 text-sm">Chicken breast, 24-ingredient mole sauce, sesame seeds, mexican rice. <span class="text-green-600 text-xs font-bold ml-2">GF</span></p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Carne Asada</h3>
+              <span class="text-red-600 font-bold">$34</span>
+            </div>
+            <p class="text-stone-600 text-sm">Grilled skirt steak, grilled nopales, onions, guacamole, beans.</p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Enchiladas Verdes</h3>
+              <span class="text-red-600 font-bold">$24</span>
+            </div>
+            <p class="text-stone-600 text-sm">Shredded chicken, tomatillo sauce, crema, queso fresco, onion.</p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Tacos de Pescado</h3>
+              <span class="text-red-600 font-bold">$22</span>
+            </div>
+            <p class="text-stone-600 text-sm">Baja style battered fish, cabbage slaw, chipotle mayo, pico de gallo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bebidas -->
+      <div class="mb-12">
+        <div class="flex items-center gap-4 mb-8">
+          <h2 class="text-3xl font-bold text-stone-900">Bebidas</h2>
+          <div class="h-px bg-stone-300 flex-grow"></div>
+          <span class="text-stone-500 font-medium">Drinks</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Margarita de la Casa</h3>
+              <span class="text-red-600 font-bold">$14</span>
+            </div>
+            <p class="text-stone-600 text-sm">Silver tequila, fresh lime juice, agave nectar, salt rim.</p>
+          </div>
+          <div class="menu-item">
+            <div class="flex justify-between items-baseline mb-2">
+              <h3 class="text-xl font-bold text-stone-900">Paloma</h3>
+              <span class="text-red-600 font-bold">$15</span>
+            </div>
+            <p class="text-stone-600 text-sm">Mezcal, grapefruit soda, lime, tajin rim.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-white border-t border-stone-100 text-center">
+    <h2 class="text-3xl font-bold mb-6">Hungry yet?</h2>
+    <a href="reservations.html" class="btn-primary px-10 py-4 rounded-full font-bold text-lg inline-block">Book a Table</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-900 text-stone-400 py-16 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>&copy; 2024 Cantina del Sol. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('menu-open');
+    }
+  </script>
+</body>
+</html>
